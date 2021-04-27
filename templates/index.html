@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+   <head>
+      <title>Volume Control</title>
+      <link rel="stylesheet" href="../static/style.css/">
+      <link rel="shortcut icon" href="../static/favicon.ico/">
+      <link rel="apple-touch-icon" href="../static/apple-touch-icon.png/">
+   </head>
+
+   <body>
+      <center>
+      <input id="off_preset" type="button" value="All Channels OFF">
+      <input id="button_minus_1" type="button" value="All Channels -1">
+      <input id="button_plus_1" type="button" value="All Channels +1">
+      <input id="morning_preset" type="button" value="Morning Preset">
+      
+      
+      <div class="slidecontainer">
+         <hr>
+         Back Room (0): <span id="slider0_value"></span><br><input type="range" min="0" max="11" value={{ servo0 }} class="slider" id="slider0"><br><br>
+         Living Room (1): <span id="slider1_value"></span><br><input type="range" min="0" max="11" value={{ servo1 }} class="slider" id="slider1"><br><br>
+         Garage (2): <span id="slider2_value"></span><br><input type="range" min="0" max="11" value={{ servo2 }} class="slider" id="slider2"><br><br>
+         <hr>
+         Outside - Front Porch (3): <span id="slider3_value"></span><br><input type="range" min="0" max="11" value={{ servo3 }} class="slider" id="slider3"><br><br>
+         Outside - Back Yard (4): <span id="slider4_value"></span><br><input type="range" min="0" max="11" value={{ servo4 }} class="slider" id="slider4"><br><br>
+         <hr>
+         Room 5 (5): <span id="slider5_value"></span><br><input type="range" min="0" max="11" value={{ servo5 }} class="slider" id="slider5"><br><br>
+         Room 6 (6): <span id="slider6_value"></span><br><input type="range" min="0" max="11" value={{ servo6 }} class="slider" id="slider6"><br><br>
+         Room 7 (7): <span id="slider7_value"></span><br><input type="range" min="0" max="11" value={{ servo7 }} class="slider" id="slider7"><br><br>
+         Room 8 (8): <span id="slider8_value"></span><br><input type="range" min="0" max="11" value={{ servo8 }} class="slider" id="slider8"><br><br>
+         Room 9 (9): <span id="slider9_value"></span><br><input type="range" min="0" max="11" value={{ servo9 }} class="slider" id="slider9"><br><br>
+      </div>
+                       
+      <script>
+            var slide0 = document.getElementById("slider0");
+            var slide1 = document.getElementById("slider1");
+            var slide2 = document.getElementById("slider2");
+            var slide3 = document.getElementById("slider3");
+            var slide4 = document.getElementById("slider4");
+            var slide5 = document.getElementById("slider5");
+            var slide6 = document.getElementById("slider6");
+            var slide7 = document.getElementById("slider7");
+            var slide8 = document.getElementById("slider8");
+            var slide9 = document.getElementById("slider9");
+            var output0 = document.getElementById("slider0_value");
+            var output1 = document.getElementById("slider1_value");
+            var output2 = document.getElementById("slider2_value");
+            var output3 = document.getElementById("slider3_value");
+            var output4 = document.getElementById("slider4_value");
+            var output5 = document.getElementById("slider5_value");
+            var output6 = document.getElementById("slider6_value");
+            var output7 = document.getElementById("slider7_value");
+            var output8 = document.getElementById("slider8_value");
+            var output9 = document.getElementById("slider9_value");
+            output0.innerHTML = slide0.value;
+            output1.innerHTML = slide1.value;
+            output2.innerHTML = slide2.value;
+            output3.innerHTML = slide3.value;
+            output4.innerHTML = slide4.value;
+            output5.innerHTML = slide5.value;
+            output6.innerHTML = slide6.value;
+            output7.innerHTML = slide7.value;
+            output8.innerHTML = slide8.value;
+            output9.innerHTML = slide9.value;
+            
+            document.getElementById("button_minus_1").onclick = function () {
+                  slide0.value --;
+                  slide1.value --;
+                  slide2.value --;
+                  slide3.value --;
+                  slide4.value --;
+                  slide5.value --;
+                  slide6.value --;
+                  slide7.value --;
+                  slide8.value --;
+                  slide9.value --;
+                  output0.innerHTML = slide0.value;
+                  output1.innerHTML = slide1.value;
+                  output2.innerHTML = slide2.value;
+                  output3.innerHTML = slide3.value;
+                  output4.innerHTML = slide4.value;
+                  output5.innerHTML = slide5.value;
+                  output6.innerHTML = slide6.value;
+                  output7.innerHTML = slide7.value;
+                  output8.innerHTML = slide8.value;
+                  output9.innerHTML = slide9.value;
+                  send_volume_data();
+                  <!--alert(slide0.value);
+            };
+            
+            document.getElementById("button_plus_1").onclick = function () {
+                  slide0.value ++;
+                  slide1.value ++;
+                  slide2.value ++;
+                  slide3.value ++;
+                  slide4.value ++;
+                  slide5.value ++;
+                  slide6.value ++;
+                  slide7.value ++;
+                  slide8.value ++;
+                  slide9.value ++;
+                  output0.innerHTML = slide0.value;
+                  output1.innerHTML = slide1.value;
+                  output2.innerHTML = slide2.value;
+                  output3.innerHTML = slide3.value;
+                  output4.innerHTML = slide4.value;
+                  output5.innerHTML = slide5.value;
+                  output6.innerHTML = slide6.value;
+                  output7.innerHTML = slide7.value;
+                  output8.innerHTML = slide8.value;
+                  output9.innerHTML = slide9.value;
+                  send_volume_data();
+                  <!--alert(slide0.value);
+            };
+            
+            document.getElementById("off_preset").onclick = function () {
+                  slide0.value = 0;
+                  slide1.value = 0;
+                  slide2.value = 0;
+                  slide3.value = 0;
+                  slide4.value = 0;
+                  slide5.value = 0;
+                  slide6.value = 0;
+                  slide7.value = 0;
+                  slide8.value = 0;
+                  slide9.value = 0;
+                  output0.innerHTML = slide0.value;
+                  output1.innerHTML = slide1.value;
+                  output2.innerHTML = slide2.value;
+                  output3.innerHTML = slide3.value;
+                  output4.innerHTML = slide4.value;
+                  output5.innerHTML = slide5.value;
+                  output6.innerHTML = slide6.value;
+                  output7.innerHTML = slide7.value;
+                  output8.innerHTML = slide8.value;
+                  output9.innerHTML = slide9.value;
+                  send_volume_data();
+                  <!--alert(slide0.value);
+            };
+            
+            
+            document.getElementById("morning_preset").onclick = function () {
+                  slide0.value = 3;
+                  slide1.value = 3;
+                  slide2.value = 3;
+                  slide3.value = 3;
+                  slide4.value = 3;
+                  slide5.value = 3;
+                  slide6.value = 3;
+                  slide7.value = 3;
+                  slide8.value = 3;
+                  slide9.value = 3;
+                  output0.innerHTML = slide0.value;
+                  output1.innerHTML = slide1.value;
+                  output2.innerHTML = slide2.value;
+                  output3.innerHTML = slide3.value;
+                  output4.innerHTML = slide4.value;
+                  output5.innerHTML = slide5.value;
+                  output6.innerHTML = slide6.value;
+                  output7.innerHTML = slide7.value;
+                  output8.innerHTML = slide8.value;
+                  output9.innerHTML = slide9.value;
+                  send_volume_data();
+                  <!--alert(slide0.value);
+            };
+            
+            slide0.oninput = function() {
+                  output0.innerHTML = slide0.value;
+                  send_volume_data();
+            }
+            
+            slide1.oninput = function() {
+                  output1.innerHTML = slide1.value;
+                  send_volume_data();
+            }
+            
+            slide2.oninput = function() {
+                  output2.innerHTML = slide2.value;
+                  send_volume_data();
+            }
+            
+            slide3.oninput = function() {
+                  output3.innerHTML = slide3.value;
+                  send_volume_data();
+            }
+            
+            slide4.oninput = function() {
+                  output4.innerHTML = slide4.value;
+                  send_volume_data();
+            }
+            
+            slide5.oninput = function() {
+                  output5.innerHTML = slide5.value;
+                  send_volume_data();
+            }
+            
+            slide6.oninput = function() {
+                  output6.innerHTML = slide6.value;
+                  send_volume_data();
+            }
+            
+            slide7.oninput = function() {
+                  output7.innerHTML = slide7.value;
+                  send_volume_data();
+            }
+            
+            slide8.oninput = function() {
+                  output8.innerHTML = slide8.value;
+                  send_volume_data();
+            }
+            
+            slide9.oninput = function() {
+                  output9.innerHTML = slide9.value;
+                  send_volume_data();
+            }
+                        
+            function send_volume_data() {
+                  var xhttp = new XMLHttpRequest();
+                  xhttp.onreadystatechange = function() {
+                        
+                        if (this.readyState == 4 && this.status == 200) {
+                        }
+                        
+                  };
+                  xhttp.open("GET", "http://192.168.0.220/" + slide0.value + "," + slide1.value + "," + slide2.value + "," + slide3.value + "," + slide4.value + "," + slide5.value + "," + slide6.value + "," + slide7.value + "," + slide8.value + "," + slide9.value, true);
+                  xhttp.send();
+            }
+            
+            
+            
+      </script>
+      </center>
+      
+   </body>
+</html>
